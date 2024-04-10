@@ -4,15 +4,18 @@ import { LogEntity, LogSeverityLevel } from "../domain/entities/log.entity";
 
 export class FileSystemDatasource implements LogDataSources {
   private readonly logPath = "logs/";
-  private readonly allLogsPath = "logs/logs-low.log";
+  private readonly allLogsPath = "logs/logs-all.log";
   private readonly mediumLogsPath = "logs/logs-medium.log";
   private readonly highLogsPath = "logs/logs-high.log";
 
-  constructor() {}
+  constructor() {
+    this.createLogsFiles();
+  }
 
   private createLogsFiles = () => {
     if (!fs.existsSync(this.logPath)) {
       fs.mkdirSync(this.logPath);
+      console.log("No hay repositorio Log");
     }
     [this.allLogsPath, this.mediumLogsPath, this.highLogsPath].forEach(
       (path) => {

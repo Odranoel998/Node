@@ -1,4 +1,3 @@
-import { log } from "console";
 import { LogEntity, LogSeverityLevel } from "../../entities/log.entity";
 import { LogRepository } from "../../repository/log.repository";
 
@@ -18,7 +17,7 @@ export class CheckService implements CheckServiceUseCase {
 
   public async excute(url: string): Promise<boolean> {
     try {
-      const req = fetch(url);
+      const req = await fetch(url);
       if (!req) {
         throw new Error(`Error on check service${url}`);
       }
@@ -29,7 +28,7 @@ export class CheckService implements CheckServiceUseCase {
       return true;
     } catch (error) {
       const errorMessage = `${error}`;
-      const log = new LogEntity(LogSeverityLevel.low, errorMessage);
+      const log = new LogEntity(LogSeverityLevel.high, errorMessage);
       this.logRepository.saveLog(log);
       this.errorCallback(errorMessage);
       return false;
