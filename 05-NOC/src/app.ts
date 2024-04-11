@@ -3,10 +3,9 @@ import { Server } from "./presentation/server";
 import "dotenv/config";
 
 (async () => {
-  main();
+  Server.start();
 })();
 
-function main() {
-  //Server.start();
-  console.log(envs);
-}
+// function main() {
+//   Server.start();
+// }
