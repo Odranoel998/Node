@@ -1,11 +1,16 @@
-import { envs } from "./config/plugins/envs.plugin";
-import { Server } from "./presentation/server";
-import "dotenv/config";
+import { Server } from './presentation/server';
 
-(async () => {
-  Server.start();
+
+
+
+(async() => {
+  main();
 })();
 
-// function main() {
-//   Server.start();
-// }
+
+function main(){
+  Server.start();
+
+}
+
+
